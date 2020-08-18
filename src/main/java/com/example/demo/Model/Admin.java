@@ -18,13 +18,36 @@ public class Admin {
 	@Column
 	private String lastName;
 	@Column
-	private String contactNumber; 
+	private String rolename; 
+	@Column
+	private String powerbiunits; 
+	@Column
+	private String isadmin; 
 	@Column
 	private String role;
 	@Column
 	private String password;
 	@Column
 	private String Conformpassword;
+	public String getRolename() {
+		return rolename;
+	}
+	public void setRolename(String rolename) {
+		this.rolename = rolename;
+	}
+	public String getPowerbiunits() {
+		return powerbiunits;
+	}
+	public void setPowerbiunits(String powerbiunits) {
+		this.powerbiunits = powerbiunits;
+	}
+	public String getIsadmin() {
+		return isadmin;
+	}
+	public void setIsadmin(String isadmin) {
+		this.isadmin = isadmin;
+	}
+	
 	public String getAdminId() {
 		return adminId;
 	}
@@ -50,12 +73,7 @@ public class Admin {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	public String getContactNumber() {
-		return contactNumber;
-	}
-	public void setContactNumber(String contactNumber) {
-		this.contactNumber = contactNumber;
-	}
+	
 	public String getPassword() {
 		return password;
 	}
@@ -70,9 +88,9 @@ public class Admin {
 	}
 	@Override
 	public String toString() {
-		return "Admin [adminId=" + adminId + ", firstName=" + firstName + ", lastName=" + lastName + ", contactNumber="
-				+ contactNumber + ", role=" + role + ", password=" + password + ", Conformpassword=" + Conformpassword
-				+ "]";
+		return "Admin [adminId=" + adminId + ", firstName=" + firstName + ", lastName=" + lastName + ", rolename="
+				+ rolename + ", powerbiunits=" + powerbiunits + ", isadmin=" + isadmin + ", role=" + role
+				+ ", password=" + password + ", Conformpassword=" + Conformpassword + "]";
 	}
 	
 	

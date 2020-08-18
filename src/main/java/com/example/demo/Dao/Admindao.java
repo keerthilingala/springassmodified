@@ -6,11 +6,14 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import com.example.demo.Model.Admin;
-import com.example.demo.Model.SupportAnalyst;
+import com.example.demo.Model.Role;
 
-@Repository
-public interface Admindao extends CrudRepository<Admin, String> {
-	public Admin findByAdminId(String AdminId);
-	public Admin findBycontactNumber(String contactNumber);
-	public List<Admin> findAll();
+public interface Admindao {
+	
+	public void create(Role role) ;
+	public void update(Role role) ;
+	public Role edit(String adminId) ;
+	public void delete(String adminId) ;
+	public List<Role> getAll() ;
+	public Role find(String admind);
 }

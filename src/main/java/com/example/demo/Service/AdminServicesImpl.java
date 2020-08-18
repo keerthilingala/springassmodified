@@ -1,154 +1,60 @@
-package com.example.demo.Service;
+ package com.example.demo.Service;
 
 
-
-import java.security.Security;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
+
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
 
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 
 import com.example.demo.Dao.Admindao;
-import com.example.demo.Dao.Rolesdao;
-import com.example.demo.Dao.SupportAnalystdao;
-import com.example.demo.Model.Admin;
-import com.example.demo.Model.AdminLogin;
 import com.example.demo.Model.Role;
-import com.example.demo.Model.SupportAnalyst;
 
-@Service
-@Component
+@Service("adminservices")
+//@Transactional(propagation= Propagation.SUPPORTS, rollbackFor=Exception.class)
+
 public class AdminServicesImpl implements AdminServices {
 	@Autowired
-	private Admindao dao;
-	@Autowired
-	private Rolesdao rrdao;
-	@Autowired
-	private SupportAnalystdao supportDao;
+	 Admindao admindao;
+
+	@Override
+	public void create(Role role) {
+		admindao.create(role);
+		
+	}
+
+	@Override
+	public void update(Role role) {
+		admindao.update(role);
+		
+	}
+
+	@Override
+	public Role edit(String adminId) {
+		return admindao.edit(adminId);
+	}
+
+	@Override
+	public void delete(String adminId) {
+		admindao.delete(adminId);
+		
+	}
+
+	@Override
+	public List<Role> getAll() {
+		return admindao.getAll();
+	}
+
+	@Override
+	public Role find(String admind) {
+		// TODO Auto-generated method stub
+		return admindao.find(admind);
+	}
 
 	
-	@Override
-	public int CreateAd(Admin admin) {
-		Admin a=dao.findByAdminId(admin.getAdminId());
-		if(a==null) {
-			Admin a1=dao.save(admin);
-			if (a1 != null) {
-				return 1;
-			} else {
-				return 2;
-			}
-		}
-		return 0;
-	}
-//	@Override
-//	public int Addrole(Role rol) {
-//		Role r=rrdao.findByAdminId(rol.getAdminId());//
-//		if(r==null) {
-//			Role a2=rrdao.save(rol);
-//			if (a2 != null) {
-//				return 1;
-//			} else {
-//				return 2;
-//			}
-//		}
-//		return 0;
-//	}
-
-	@Override
-	public int login(AdminLogin adminlogin) {
-		Admin a =dao.findByAdminId(adminlogin.getUserId());
-		 if(a==null)
-		 {
-		   return 1;
-		 }
-		 else
-		 {
-		 return 2;
-		 }
+	
+	
 }
-	
-	@Override
-	public List<SupportAnalyst> listsupportanalyst() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	
-	
-
-
-	@Override
-	public Admin getAdmin(String username) {
-		
-		return dao.findByAdminId(username);
-	}
-
-	@Override
-	public int Addrole(Role rol) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public boolean updateRole(Role role) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public Object findAll() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	
-	@Override
-	public Role getRolebyadminId(String adminId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	@Override
-	public List<Role> getAllAdminIDs() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String deleteRole(String adminId) {
-		Rolesdao.deleteByAdminId(adminId);
-		return adminId;
-	}
-
-	
-
-	@Override
-	public Admin getAdminByContactNumber(String contactNumber) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String delete(String adminId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-/*	@Override
-	public void deleteRole(String adminId) {
-		// TODO Auto-generated method stub
-		
-	}*/
-	}
-	
-
-	
-	
